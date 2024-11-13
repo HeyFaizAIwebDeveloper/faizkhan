@@ -17,13 +17,9 @@
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+margin: auto;
+padding: 0;
+box-sizing: border-box;
 }
 
 @layer utilities {
@@ -31,3 +27,12 @@ body {
     text-wrap: balance;
   }
 }
+
+.codepen-button {
+  display: block;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
