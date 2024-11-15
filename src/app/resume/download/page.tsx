@@ -1,4 +1,3 @@
-
 import Footer from "@/components/footer";
 import { ArrowDownToLine, MoveLeft } from "lucide-react";
 import Link from "next/link";
@@ -34,7 +33,7 @@ const ResumeDownloadPage = () => {
                     Resume
                 </h1>
                 <h2 className="text-base  tracking-tight ">
-                    here's a brief overview of my professional experience
+                    here&apos;s a brief overview of my professional experience
                 </h2>
                 <iframe
                     src={`/assets/Resume.pdf`}
@@ -54,7 +53,7 @@ const ResumeDownloadPage = () => {
                     Download Resume
                 </Link>
                 <div className=" mt-6 md:mt-12 border-t ">
-                <Footer />
+                    <Footer />
                 </div>
             </div>
         </main>

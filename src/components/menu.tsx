@@ -9,6 +9,7 @@ import { DragCloseDrawer } from "./animation-components/drawer";
 import { Bebas_Neue } from "next/font/google";
 import { menu } from "@/libs/data";
 import { usePathname } from "next/navigation";
+
 const bebasNeue = Bebas_Neue({
     weight: ["400"],
     subsets: ["latin"],
@@ -17,6 +18,7 @@ const bebasNeue = Bebas_Neue({
 
 const Menu = () => {
     const [open, setOpen] = useState(false);
+    const pathname = usePathname(); // Call usePathname here
     useEffect(() => {
         if (open) {
             document.body.style.overflow = "hidden";
@@ -38,7 +40,6 @@ const Menu = () => {
                 <div className=" w-full h-full flex flex-col justify-center items-center text-black space-y-4">
                     <ul className={` ${bebasNeue.className} space-y-2`}>
                         {menu.map(({ link, label }, i) => {
-                            const pathname = usePathname();
                             const isActive = link === '/' ? pathname === '/' : pathname?.startsWith(link);
 
                             return (

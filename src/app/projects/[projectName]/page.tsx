@@ -11,6 +11,7 @@ import SingalProjectContent from "@/components/single-project-info-card";
 
 import { Bebas_Neue } from "next/font/google";
 import { motion, useScroll, useTransform } from "framer-motion";
+
 const bebasNeue = Bebas_Neue({
     weight: ["400"],
     subsets: ["latin"],
@@ -36,13 +37,46 @@ const projects = [
     },
 ];
 
+interface ImageWithScrollEffectProps {
+    url: string; // The url is a string
+    index: number; // The index is a number
+}
+
+const ImageWithScrollEffect: React.FC<ImageWithScrollEffectProps> = ({ url, index }) =>  {
+    const ref = useRef<HTMLDivElement>(null);
+    const { scrollYProgress } = useScroll({
+        target: ref,
+        offset: ["0 1", "1.33 1"],
+    });
+    const scaleProgress = useTransform(scrollYProgress, [0, 1], [0.5, 1]);
+    const opacityProgress = useTransform(scrollYProgress, [0, 1], [0.5, 1]);
+
+    return (
+        <motion.div
+            ref={ref}
+            style={{
+                scale: scaleProgress,
+                opacity: opacityProgress,
+            }}
+        >
+            <div className="h-full w-full">
+                <Image
+                    src={url}
+                    alt={`project-${index}`}
+                    width={1000}
+                    height={1000}
+                    objectFit="cover"
+                />
+            </div>
+        </motion.div>
+    );
+};
+
 const SingleProjectPage = ({ params }: { params: { projectName: string } }) => {
     const router = useRouter();
 
-
-
     return (
-        <main className="  min-h-screen w-full bg-black text-white md:px-4  ">
+        <main className="min-h-screen w-full bg-black text-white md:px-4">
             <NavbarContent />
 
             <section className="px-4 md:px-0">
@@ -54,41 +88,13 @@ const SingleProjectPage = ({ params }: { params: { projectName: string } }) => {
             </section>
 
             <section className="flex flex-col justify-center items-center gap-10 md:gap-20 px-4 md:px-0 py-5 md:py-10">
-                {projects[0].imageUrl.map((url, i) => {
-                    const ref = useRef<HTMLDivElement>(null);
-                    const { scrollYProgress } = useScroll({
-                        target: ref,
-                        offset: ["0 1", "1.33 1"],
-                    });
-                    const scaleProgress = useTransform(scrollYProgress, [0, 1], [0.5, 1]);
-                    const opacityProgress = useTransform(scrollYProgress, [0, 1], [0.5, 1]);
-
-                    return (
-                        <motion.div
-                            key={i}
-                            ref={ref}
-                            style={{
-                                scale: scaleProgress,
-                                opacity: opacityProgress,
-                            }}
-                        >
-                            <div className="h-full w-full">
-                                <Image
-                                    src={url}
-                                    alt={`project-${i}`}
-                                    width={1000}
-                                    height={1000}
-                                    objectFit="cover"
-                                />
-                            </div>
-                        </motion.div>
-                    );
-                })}
+                {projects[0].imageUrl.map((url, i) => (
+                    <ImageWithScrollEffect key={i} url={url} index={i} />
+                ))}
             </section>
+
             <div className="px-4 md:px-0">
-                <div
-                    className={` ${bebasNeue.className} text-4xl md:text-8xl flex flex-col items-start pb-8`}
-                >
+                <div className={`${bebasNeue.className} text-4xl md:text-8xl flex flex-col items-start pb-8`}>
                     <button onClick={() => router.push("/who-am-i")}>
                         <h3>
                             <FlipWord style="text-[#f51c20]">NEXT</FlipWord>

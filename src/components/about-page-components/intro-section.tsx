@@ -53,7 +53,7 @@ const Intro = () => {
                             </p>
                             <p>
                                 I like to work with new tools and
-                                technologies,I'm always down for hearing about
+                                technologies,I&apos;m always down for hearing about
                                 new projects, so feel free to drop me a line.
                             </p>
                             <button 

@@ -49,14 +49,14 @@ const Intro = () => {
 
                     <div className="text-sm space-y-5  max-w-lg">
                         <p>
-                            When I’m not immersed in code, you might find me
+                            When I&apos;m not immersed in code, you might find me
                             strategizing over a chessboard, diving into the
                             latest AI tools. I also enjoy channeling my
                             creativity into drawing, where I experiment with new
                             ideas and styles.
                         </p>
                         <p>
-                            I like to work with new tools and technologies, I'm
+                            I like to work with new tools and technologies, I&apos;m
                             always down for hearing about new projects, so feel
                             free to drop me a line.
                         </p>

@@ -32,7 +32,7 @@ const Hero = () => {
                     <h1
                         className={`${bebasNeue.className}  flex justify-center text-7xl sm:text-[115px] md:text-[145px] lg:text-[200px] xl:text-[300px] leading-none`}
                     >
-                        <MaskText>I'm Faiz Khan</MaskText>
+                        <MaskText>I&apos;m Faiz Khan</MaskText>
                     </h1>
                 </div>
             </div>

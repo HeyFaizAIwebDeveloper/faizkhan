@@ -1,12 +1,9 @@
-"use client"
-
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, useCallback } from 'react';
 
 interface ScrambleProps {
   children: string;
   mode: 'appear-hover' | 'hover' | 'appear' | 'loop';
-  className? : string;
-
+  className?: string;
 }
 
 const letters = "abcdefghijklmnopqrstuvwxyz-.,+*!?@&%/=";
@@ -30,7 +27,7 @@ const EncryptText: React.FC<ScrambleProps> = ({ children, mode, className }) => 
       .join("");
   };
 
-  const animateScramble = () => {
+  const animateScramble = useCallback(() => {
     let progress = 0;
     const interval = setInterval(() => {
       progress += 1;
@@ -40,7 +37,7 @@ const EncryptText: React.FC<ScrambleProps> = ({ children, mode, className }) => 
       }
     }, 30);
     return interval;
-  };
+  }, [children, scramble]);
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
@@ -77,13 +74,13 @@ const EncryptText: React.FC<ScrambleProps> = ({ children, mode, className }) => 
     return () => {
       if (interval) clearInterval(interval);
     };
-  }, [isVisible, mode]);
+  }, [isVisible, mode, animateScramble]);
 
   useEffect(() => {
     if ((mode === 'hover' || mode === 'appear-hover') && isHovering) {
       animateScramble();
     }
-  }, [isHovering, mode]);
+  }, [isHovering, mode, animateScramble]);
 
   const handleMouseEnter = () => {
     if (mode === 'hover' || mode === 'appear-hover') {

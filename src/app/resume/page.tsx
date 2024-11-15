@@ -97,7 +97,7 @@ const ResumePage = () => {
                     <h2>Freelancer</h2>
                 </div>
                 <p className="pt-4 text-sm">
-                    I'm Faiz Khan, 20-year-old Computer Science student and{" "}
+                    I&apos;m Faiz Khan, 20-year-old Computer Science student and{" "}
                     <strong className="font-medium">
                         MERN full-stack developer
                     </strong>
